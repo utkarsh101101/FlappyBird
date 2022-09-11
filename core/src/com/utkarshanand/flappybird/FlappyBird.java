@@ -4,15 +4,11 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.utils.ScreenUtils;
-import com.sun.org.apache.xpath.internal.objects.XNumber;
 
 import java.util.Random;
 
@@ -20,7 +16,6 @@ public class FlappyBird extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture background;
 	Texture[] bird;
-	//ShapeRenderer shapeRenderer;
 
 	float birdY = 0;
 	int flapState = 0;
@@ -50,7 +45,6 @@ public class FlappyBird extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		background = new Texture("bg.png");
 		gameOver = new Texture("gameover.png");
-		//shapeRenderer = new ShapeRenderer();
 		birdCircle = new Circle();
 		font = new BitmapFont();
 		font.setColor(Color.WHITE);
@@ -143,23 +137,11 @@ public class FlappyBird extends ApplicationAdapter {
 		font.draw(batch, String.valueOf(score), 100, 200);
 		batch.end();
 		birdCircle.set(Gdx.graphics.getWidth()/2, birdY + bird[flapState].getHeight()/2, bird[flapState].getWidth()/2);
-//		shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-//		shapeRenderer.setColor(Color.RED);
-//		shapeRenderer.circle(birdCircle.x, birdCircle.y, birdCircle.radius);
 
 		for(int i = 0; i < noOfTubes; i++){
-			//shapeRenderer.rect(tubeX[i],Gdx.graphics.getHeight() / 2 + gap / 2 + tubeOffset[i], topTube.getWidth(), topTube.getHeight());
-			//shapeRenderer.rect(tubeX[i], Gdx.graphics.getHeight() / 2 - gap / 2 - bottomTube.getHeight() + tubeOffset[i], bottomTube.getWidth(), bottomTube.getHeight());
-
 			if(Intersector.overlaps(birdCircle, topTubeRectangles[i]) || Intersector.overlaps(birdCircle, bottomTubeRectangles[i])){
 				gameState = 2;
 			}
 		}
-		//shapeRenderer.end();
 	}
-//	@Override
-//	public void dispose () {
-//		batch.dispose();
-//		background.dispose();
-//	}
 }
